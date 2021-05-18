@@ -1,3 +1,4 @@
+#test 
 configfile: "config.yaml"
 
 rule bwa_mem:
