@@ -6,4 +6,5 @@ This worflow is made in two part.
 
 In this folder must be present:
 - gatk-package-4.1.9.0-local.jar
-- 
+- gatk (simple folder - 20 Ko)
+
