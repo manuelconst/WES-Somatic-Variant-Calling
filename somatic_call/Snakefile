@@ -1,0 +1,11 @@
+configfile: "config.yaml"
+
+rule all:
+    input:
+        expand("somatic/{normal}.vcf.gz", normal= config["normal"]),
+        "contamination/contamination.BIMA1.table",
+        expand("somatic/snvs.{normal}.filtered.vcf", normal= config["normal"]),
+        expand("somatic/snvs.{normal}.ann.maf", normal= config["normal"]),
+### Modules ###
+
+include: "rule_mutect2.smk"
