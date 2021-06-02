@@ -1,0 +1,10 @@
+configfile: "config.yaml"
+
+rule all:
+    input:
+        expand("mergedFASTQ/{sample}_R1.fastq.gz", sample=config["samples"]),
+        expand("mergedFASTQ/{sample}_R2.fastq.gz", sample=config["samples"]),
+
+### Modules ###
+
+include: "preprocessing.smk"
