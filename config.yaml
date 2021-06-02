@@ -3,5 +3,5 @@
 # Exemple:
 
 samples:
-    S-0000273-01: S-0000273-01.fastq.gz
-    S-0001396-01: SS-0001396-01.fastq.gz
+    a: a.fastq.gz
+    b: b.fastq.gz
