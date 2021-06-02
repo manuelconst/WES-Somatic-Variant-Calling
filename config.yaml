@@ -3,5 +3,5 @@
 # Exemple:
 
 samples:
-    a: a.fastq.gz
-    b: b.fastq.gz
+    a: preprocessing/mergedFASTQ/a.fastq.gz
+    b: preprocessing/mergedFASTQ/b.fastq.gz
