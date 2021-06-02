@@ -50,7 +50,7 @@ rule gatk_baserecalibrator:
         bam="dedup/{sample}.bam",
         ref="ref/hg38.fa",
         dict="ref/hg38.dict",
-        known="ref/dbsnp_146.hg38.vcf.gz"  # optional known sites
+        known="ref/dbsnp.hg38.vcf.gz"  # optional known sites
     output:
         recal_table="recal/{sample}.grp"
     log:
