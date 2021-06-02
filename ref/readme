@@ -1,3 +1,5 @@
 # This folder must contain:
 
-- hg38.fa # ref genome 
+- hg38.fa     # ref genome link: ftp://ftp.ensembl.org/pub/release-92/fasta/homo_sapiens/dna/Homo_sapiens.GRCh38.dna.primary_assembly.fa.gz
+              # don't forget to change name !
+- hg38.dict   #         
