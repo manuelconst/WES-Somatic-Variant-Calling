@@ -1,4 +1,6 @@
 # Description file for samples listing
+# The sample names have to be set after "preprocessing workflow" (merging fastq files)
+
 samples:
     S-0000273-01: S-0000273-01.fastq.gz
     S-0001396-01: SS-0001396-01.fastq.gz
