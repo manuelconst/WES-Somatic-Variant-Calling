@@ -19,10 +19,6 @@ rule collect_multiple_metrics:
          bam="somatic_call/recal/{sample}.bam",
          ref="ref/hg38.fasta.gz"
     output:
-        # Through the output file extensions the different tools for the metrics can be selected
-        # so that it is not necessary to specify them under params with the "PROGRAM" option.
-        # Usable extensions (and which tools they implicitly call) are listed here:
-        #         https://snakemake-wrappers.readthedocs.io/en/stable/wrappers/picard/collectmultiplemetrics.html.
         multiext("stats/{sample}",
                  ".alignment_summary_metrics",
                  ".insert_size_metrics",
@@ -44,8 +40,6 @@ rule collect_multiple_metrics:
                  ".quality_yield_metrics"
                  )
     resources:
-        # This parameter (default 3 GB) can be used to limit the total resources a pipeline is allowed to use, see:
-        #     https://snakemake.readthedocs.io/en/stable/snakefiles/rules.html#resources
         mem_gb=3
     log:
         "logs/picard/multiple_metrics/{sample}.log"
