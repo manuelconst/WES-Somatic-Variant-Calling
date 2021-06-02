@@ -1,11 +1,10 @@
-#test 
 configfile: "config.yaml"
 
 rule bwa_mem:
     input:
-        reads=["reads/BIMA10/{sample}_1.trim.fastq.gz", "reads/BIMA10/{sample}_2.trim.fastq.gz"]
+        reads=["preprocessing/mergedFASTQ/{sample}_R1.fastq.gz", "preprocessing/mergedFASTQ/{sample}_R2.fastq.gz"]
     output:
-        "mapped/{sample}.bam"
+        temp("mapped/{sample}.bam")
     log:
         "logs/bwa_mem/{sample}.log"
     params:
@@ -14,9 +13,9 @@ rule bwa_mem:
         sort="samtools",             # Can be 'none', 'samtools' or 'picard'.
         sort_order="coordinate",  # Can be 'queryname' or 'coordinate'.
         sort_extra=""            # Extra args for samtools/picard.
-    threads: 4
+    threads: 8
     wrapper:
-        "0.72.0/bio/bwa/mem"
+        "0.74.0/bio/bwa/mem"
 
 rule mark_duplicates:
     input:
@@ -28,14 +27,10 @@ rule mark_duplicates:
         "logs/picard/dedup/{sample}.log"
     params:
         "REMOVE_DUPLICATES=true"
-    # optional specification of memory usage of the JVM that snakemake will respect with global
-    # resource restrictions (https://snakemake.readthedocs.io/en/latest/snakefiles/rules.html#resources)
-    # and which can be used to request RAM during cluster job submission as `{resources.mem_mb}`:
-    # https://snakemake.readthedocs.io/en/latest/executing/cluster.html#job-properties
     resources:
         mem_mb=1024
     wrapper:
-        "0.72.0/bio/picard/markduplicates"
+        "0.74.0/bio/picard/markduplicates"
 
 rule samtools_stats:
     input:
@@ -48,7 +43,7 @@ rule samtools_stats:
     log:
         "logs/samtools_stats/{sample}.log"
     wrapper:
-        "0.72.0/bio/samtools/stats"
+        "0.74.0/bio/samtools/stats"
 
 rule gatk_baserecalibrator:
     input:
@@ -70,7 +65,7 @@ rule gatk_baserecalibrator:
     resources:
         mem_mb=1024
     wrapper:
-        "0.72.0/bio/gatk/baserecalibrator"
+        "0.74.0/bio/gatk/baserecalibrator"
 
 rule samtools_index:
     input:
@@ -82,7 +77,7 @@ rule samtools_index:
     params:
         "" # optional params string
     wrapper:
-        "0.72.0/bio/samtools/index"
+        "0.74.0/bio/samtools/index"
 
 rule gatk_applybqsr:
     input:
@@ -91,7 +86,7 @@ rule gatk_applybqsr:
         dict="ref/hg38.dict",
         recal_table="recal/{sample}.grp"
     output:
-        protected("somatic_call/recal/{sample}.bam")
+        bam="somatic_call/recal/{sample}.bam"
     log:
         "logs/gatk/gatk_applybqsr/{sample}.log"
     params:
@@ -104,4 +99,17 @@ rule gatk_applybqsr:
     resources:
         mem_mb=1024
     wrapper:
-        "0.72.0/bio/gatk/applybqsr"
+        "0.74.0/bio/gatk/applybqsr"
+
+rule fastqc:
+    input:
+        "mapped/{sample}.bam"
+    output:
+        html="qc/fastqc/{sample}.html",
+        zip="qc/fastqc/{sample}_fastqc.zip" # the suffix _fastqc.zip is necessary for multiqc to find the file. If not using multiqc, you are free to choose an arbitrary filename
+    params: ""
+    log:
+        "logs/fastqc/{sample}.log"
+    threads: 1
+    wrapper:
+        "0.74.0/bio/fastqc"
