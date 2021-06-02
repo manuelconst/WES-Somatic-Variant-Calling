@@ -58,10 +58,6 @@ rule gatk_baserecalibrator:
     params:
         extra="",  # optional
         java_opts="-DGATK_STACKTRACE_ON_USER_EXCEPTION=true", # optional
-    # optional specification of memory usage of the JVM that snakemake will respect with global
-    # resource restrictions (https://snakemake.readthedocs.io/en/latest/snakefiles/rules.html#resources)
-    # and which can be used to request RAM during cluster job submission as `{resources.mem_mb}`:
-    # https://snakemake.readthedocs.io/en/latest/executing/cluster.html#job-properties
     resources:
         mem_mb=1024
     wrapper:
@@ -92,10 +88,6 @@ rule gatk_applybqsr:
     params:
         extra="",  # optional
         java_opts="", # optional
-    # optional specification of memory usage of the JVM that snakemake will respect with global
-    # resource restrictions (https://snakemake.readthedocs.io/en/latest/snakefiles/rules.html#resources)
-    # and which can be used to request RAM during cluster job submission as `{resources.mem_mb}`:
-    # https://snakemake.readthedocs.io/en/latest/executing/cluster.html#job-properties
     resources:
         mem_mb=1024
     wrapper:
