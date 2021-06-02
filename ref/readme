@@ -1,5 +1,7 @@
 # This folder must contain:
 
 - hg38.fa     # ref genome link: ftp://ftp.ensembl.org/pub/release-92/fasta/homo_sapiens/dna/Homo_sapiens.GRCh38.dna.primary_assembly.fa.gz
-              # don't forget to change name !
-- hg38.dict   #         
+              # don't forget to change name and uncompress file!
+- hg38.dict   # ref index genome fasta
+
+- dbsnp.hg38.vcf.gz  # https://ftp.ncbi.nih.gov/snp/organisms/human_9606/VCF/GATK/All_20180418.vcf.gz
