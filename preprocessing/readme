@@ -1,0 +1,2 @@
+### Folder to store raw fastq from illumina sequencing platform ###
+Update the config file with sample listing, and then merge fastq with the preprocessing rules.
