@@ -1,4 +1,4 @@
 normal:
-  B10-273-W18: recal/B10-273-W18.bam
+  a: recal/a.bam
 tumor1:
-  S10-1396-W0: recal/S10-1396-W0.bam
+  b: recal/b.bam
