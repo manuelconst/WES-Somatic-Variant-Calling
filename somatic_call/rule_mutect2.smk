@@ -52,10 +52,6 @@ rule gatk_filtermutectcalls:
     params:
         extra="--max-alt-allele-count 3",  # optional arguments, see GATK docs
         java_opts="",  # optional
-    # optional specification of memory usage of the JVM that snakemake will respect with global
-    # resource restrictions (https://snakemake.readthedocs.io/en/latest/snakefiles/rules.html#resources)
-    # and which can be used to request RAM during cluster job submission as `{resources.mem_mb}`:
-    # https://snakemake.readthedocs.io/en/latest/executing/cluster.html#job-properties
     resources:
         mem_mb=1024,
     shell:
@@ -70,10 +66,6 @@ rule gatk_funcotator:
         maf="somatic/snvs.{normal}.ann.maf",
     log:
         "logs/gatk/funcotator/snvs.{normal}.log",
-    # optional specification of memory usage of the JVM that snakemake will respect with global
-    # resource restrictions (https://snakemake.readthedocs.io/en/latest/snakefiles/rules.html#resources)
-    # and which can be used to request RAM during cluster job submission as `{resources.mem_mb}`:
-    # https://snakemake.readthedocs.io/en/latest/executing/cluster.html#job-properties
     resources:
         mem_mb=1024,
     shell:
